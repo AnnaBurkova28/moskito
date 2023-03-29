@@ -14,6 +14,7 @@ public class MovieManagerTest {
 
     }
 
+
     @Test
     public void testEmpty() {
         MovieManager manager = new MovieManager();
@@ -89,6 +90,33 @@ public class MovieManagerTest {
     @Test
     public void testNotFindLastFilm() {
         MovieManager manager = new MovieManager();
+
+        String[] expected = {};
+        String[] actual = manager.findLast();
+        Assertions.assertArrayEquals(expected, actual);
+    }
+    @Test
+    public void testFindLastFilmLimited() {
+        MovieManager manager = new MovieManager(5);
+        manager.add("Film a");
+        manager.add("Film b");
+        manager.add("Film c");
+        manager.add("Film d");
+        manager.add("Film e");
+        manager.add("Film f");
+        manager.add("Film g");
+        manager.add("Film h");
+        manager.add("Film i");
+        manager.add("Film j");
+        manager.add("Film k");
+        String[] expected = {"Film k", "Film j", "Film i", "Film h", "Film g"};
+        String[] actual = manager.findLast();
+        Assertions.assertArrayEquals(expected, actual);
+    }
+    @Test
+    public void testFindLastFilmLimitedLimit() {
+        MovieManager manager = new MovieManager(5);
+
 
         String[] expected = {};
         String[] actual = manager.findLast();
